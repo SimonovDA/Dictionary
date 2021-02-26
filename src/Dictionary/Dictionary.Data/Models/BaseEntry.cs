@@ -8,5 +8,6 @@ namespace Dictionary.Data.Models
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
+
     }
 }
