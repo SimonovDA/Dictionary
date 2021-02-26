@@ -1,6 +1,6 @@
 ﻿namespace Dictionary.Data.Models
 {
-    public record User : BaseEntry
+    public class User : BaseEntry
     {
         public string Name { get; set; }
 
