@@ -28,7 +28,7 @@ namespace Dictionary
         }
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMongoDb(Environment, Configuration);
+            //services.AddMongoDb(Environment, Configuration);
             services.AddControllers();
         }
 

@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+    src:
+        restart: always
+        environment:
+            - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
+            - MongoDbConnect=${MongoDbConnect}
+        build:
+            context: ./src
+            dockerfile: Dockerfile
+        ports: 
+            - 8080:80

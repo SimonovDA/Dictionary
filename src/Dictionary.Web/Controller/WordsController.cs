@@ -30,6 +30,12 @@ namespace Dictionary.Web.Controller
             return Ok(newUser);
         }
 
+        [HttpPost("getOk")]
+        public async Task<ActionResult> Get()
+        {
+            return Ok();
+        }
+
         private bool Comparer(User user1, User user2)
         {
             return user1 == user2;
