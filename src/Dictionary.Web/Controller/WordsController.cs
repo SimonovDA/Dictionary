@@ -30,7 +30,7 @@ namespace Dictionary.Web.Controller
             return Ok(newUser);
         }
 
-        [HttpPost("getOk")]
+        [HttpGet("getOk")]
         public async Task<ActionResult> Get()
         {
             return Ok();

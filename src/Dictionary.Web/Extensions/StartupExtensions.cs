@@ -5,6 +5,7 @@ using Dictionary.Web.Configuration;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Newtonsoft.Json;
 
 namespace Dictionary.Web.Extensions
 {
@@ -23,15 +24,13 @@ namespace Dictionary.Web.Extensions
             }
             else
             {
-                var json = Environment.GetEnvironmentVariable(name);
-
+                var value = Environment.GetEnvironmentVariable(name);
                 try
                 {
-                    config = JsonSerializer.Deserialize<T>(json);
+                    JsonConvert.PopulateObject(value, config);
                 }
                 catch (Exception e)
                 {
-                    
                     throw e;
                 }
             }
