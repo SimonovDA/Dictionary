@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Dictionary
+namespace Dictionary.Web
 {
     public class Program
     {
