@@ -6,6 +6,11 @@
 
   <ItemGroup>
     <PackageReference Include="MongoDB.Driver" Version="2.11.6" />
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Dictionary.Web.Models\Dictionary.Web.Models.csproj" />
   </ItemGroup>
 
 </Project>

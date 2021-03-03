@@ -1,10 +1,7 @@
-﻿using System;
-using System.Linq;
+﻿using Dictionary.Data;
 using System.Threading.Tasks;
-using Dictionary.Data;
 using Dictionary.Data.Models;
 using Microsoft.AspNetCore.Mvc;
-using MongoDB.Driver;
 
 namespace Dictionary.Web.Controller
 {
@@ -12,38 +9,29 @@ namespace Dictionary.Web.Controller
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly MongoDbContext _context;
+        private readonly UserRepository _repository;
 
-        public UserController(MongoDbContext context)
+        public UserController(UserRepository repository)
         {
-            _context = context;
+            _repository = repository;
         }
         [HttpPost("create")]
         public async Task<ActionResult> CreateUserAsync([FromBody] User newUser)
         {
-            var collection = _context._mongoDb.GetCollection<User>(nameof(User));
-            var user = collection.AsQueryable().Where(x => x.Age == newUser.Age && x.Name == newUser.Name).ToList();
-            if (user.Count > 0)
-                return BadRequest("User exist");
-
-            await collection.InsertOneAsync(newUser);
-            return Ok(newUser);
+            var user = await _repository.Create(newUser);
+            if (user.Id == null)
+                return Conflict("User exists");
+            return Ok(user);
         }
 
         [HttpGet("get")]
         public async Task<ActionResult> GetUserAsync(string id)
         {
-            var collection = _context._mongoDb.GetCollection<User>(nameof(User));
-            try
-            {
-                var user = collection.AsQueryable().Where(x => x.Id.Equals(id)).ToList();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine();
-            }
+            var user = await _repository.Get(id);
 
-            return Ok();
+            if (user != null)
+                return Ok(user);
+            return NotFound("User not found");
         }
     }
 }

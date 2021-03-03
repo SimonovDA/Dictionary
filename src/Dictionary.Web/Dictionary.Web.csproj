@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Dictionary.Data\Dictionary.Data.csproj" />
+    <ProjectReference Include="..\Dictionary.Web.Models\Dictionary.Web.Models.csproj" />
   </ItemGroup>
 
 </Project>

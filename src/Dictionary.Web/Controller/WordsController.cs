@@ -21,7 +21,7 @@ namespace Dictionary.Web.Controller
         [HttpPost("newUser")]
         private async Task<ActionResult> GetReport([FromBody] User newUser)
         {
-            var collection = _context._mongoDb.GetCollection<User>(nameof(User));
+            var collection = _context.MongoDb.GetCollection<User>(nameof(User));
             var user = collection.AsQueryable().Where(x => x.Age == newUser.Age && x.Name == newUser.Name).ToList();
             if (user.Count > 0)
                 return BadRequest("This user");

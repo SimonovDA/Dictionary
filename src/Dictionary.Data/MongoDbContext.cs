@@ -6,13 +6,13 @@ namespace Dictionary.Data
 {
     public class MongoDbContext
     {
-        public readonly IMongoDatabase _mongoDb;
+        public readonly IMongoDatabase MongoDb;
         private readonly Task createIndex;
 
         public MongoDbContext(MongoDbConnect connect)
         {
             var client = new MongoClient(connect.ConnectionString);
-            _mongoDb = client.GetDatabase(connect.Database);
+            MongoDb = client.GetDatabase(connect.Database);
 
             //createIndex = CreateIndexForCalculators();
         }

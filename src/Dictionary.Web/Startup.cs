@@ -1,3 +1,4 @@
+using Dictionary.Data.Extensions;
 using Dictionary.Web.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -22,6 +23,7 @@ namespace Dictionary.Web
         }
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddData();
             services.AddMongoDb(Environment, Configuration);
             services.AddControllers();
         }
